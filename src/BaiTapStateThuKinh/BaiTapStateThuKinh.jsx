@@ -81,18 +81,29 @@ export default class BaiTapStateThuKinh extends Component {
   renderGlasses = () => {
     let glassesArr = data.map((prod, index) => {
       return (
-        <button className="mx-3 mt-3" key={index} onclick = {()=>{this.changeGlasses()}}>
+        <button
+          className="mx-3 mt-3"
+          key={index}
+          onClick={() => {
+            this.changeGlasses(prod);
+          }}
+        >
           <img src={prod.url} alt="" style={{ width: 120, height: 50 }} />
         </button>
       );
     });
     return glassesArr;
   };
+
   // thay đổi kính và data kính
-  changeGlasses = () => {
-    console.log("cc")
+  changeGlasses = (defineGlasses) => {
+    this.setState({
+      defaultGlasses: defineGlasses,
+    });
+    console.log(defineGlasses);
   };
   render() {
+    let { id, name, price, url, desc } = this.state.defaultGlasses;
     return (
       <div>
         <header className="header">
@@ -106,7 +117,20 @@ export default class BaiTapStateThuKinh extends Component {
                 style={{ width: 600 }}
               >
                 <div className="info-glasses">
-                  <div className="info-box"></div>
+                  <img
+                    src={url}
+                    alt=""
+                    style={{ width: 220 }}
+                    className="glasses-show"
+                  />
+
+                  <div className="info-box">
+                    <h4>{name}</h4>
+                    <p>
+                      {desc.length > 80 ? desc.substring(0, 70) + "..." : desc}
+                    </p>
+                    <p>Price: {price}</p>
+                  </div>
                 </div>
 
                 <img
@@ -116,7 +140,7 @@ export default class BaiTapStateThuKinh extends Component {
                 />
               </section>
               <section className="glasses-photo mt-5">
-                {this.renderGlasses(this.data)}
+                {this.renderGlasses()}
               </section>
             </div>
           </div>
