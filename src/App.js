@@ -1,5 +1,6 @@
 
 import BaiTapThucHanhLayout from "./BaiTapLayoutComponent/BaiTapThucHanhLayout";
+import BaiTapStateThuKinh from "./BaiTapStateThuKinh/BaiTapStateThuKinh";
 import DataBinding from "./Components/DataBinding/DataBinding";
 import DemoClass from "./Components/DemoClass";
 import DemoFunction from "./Components/DemoFunction";
@@ -41,7 +42,9 @@ function App() {
     {/* <RenderWithMap/> */}
     {/* <BaiTapMovieRenderWithMap/> */}
     {/* <DemoProps/> */}
-    <BaiTapThucHanhLayout/>
+    {/* <BaiTapThucHanhLayout/> */}
+    <BaiTapStateThuKinh/>
+  
     </div>
   );
 }
