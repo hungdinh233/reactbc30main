@@ -77,7 +77,7 @@ export default class BaiTapStateThuKinh extends Component {
     },
   };
 
-  //render glass ra giao diện
+  //----------------render glass ra giao diện------------------
   renderGlasses = () => {
     let glassesArr = data.map((prod, index) => {
       return (
@@ -95,7 +95,7 @@ export default class BaiTapStateThuKinh extends Component {
     return glassesArr;
   };
 
-  // thay đổi kính và data kính
+  // ---------------------thay đổi kính và data kính------------------
   changeGlasses = (defineGlasses) => {
     this.setState({
       defaultGlasses: defineGlasses,
