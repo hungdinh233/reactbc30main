@@ -13,6 +13,7 @@ import Home from "./Components/Home/Home";
 import HandleEvent from "./HandleEvent/HandleEvent";
 import BaiTapXemChiTiet from "./Props/BaiTapXemChiTiet/BaiTapXemChiTiet";
 import DemoProps from "./Props/DemoProps/DemoProps";
+import ExeCar from "./Props/ExeCar/ExeCar";
 import PropsVip from "./Props/PropsTuLuyen/PropsVip";
 import BaiTapMovieRenderWithMap from "./RenderWithMap/BaiTapMovieRenderWithMap";
 import RenderWithMap from "./RenderWithMap/RenderWithMap";
@@ -51,6 +52,10 @@ function App() {
       {/* <ThuKinhPractice /> */}
       {/* <ProductList/> */}
       {/* <BaiTapXemChiTiet/> */}
+      <ExeCar/>
+
+      
+ 
     </div>
   );
 }
