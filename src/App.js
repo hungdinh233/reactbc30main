@@ -1,61 +1,91 @@
-import BaiTapThucHanhLayout from "./BaiTapLayoutComponent/BaiTapThucHanhLayout";
-import ProductList from "./BaiTapProps/ProductList";
-import BaiTapStateThuKinh from "./BaiTapStateThuKinh/BaiTapStateThuKinh";
-import ThuKinhPractice from "./BaiTapStateThuKinh/ThuKinhPractice";
-import DataBinding from "./Components/DataBinding/DataBinding";
-import DemoClass from "./Components/DemoClass";
-import DemoFunction from "./Components/DemoFunction";
-import Content from "./Components/Home/Content";
-import Footer from "./Components/Home/Footer";
-import Header from "./Components/Home/Header";
-import Hello from "./Components/Home/Hello";
-import Home from "./Components/Home/Home";
-import HandleEvent from "./HandleEvent/HandleEvent";
-import BaiTapXemChiTiet from "./Props/BaiTapXemChiTiet/BaiTapXemChiTiet";
-import DemoProps from "./Props/DemoProps/DemoProps";
-import ExeCar from "./Props/ExeCar/ExeCar";
-import PropsVip from "./Props/PropsTuLuyen/PropsVip";
-import BaiTapMovieRenderWithMap from "./RenderWithMap/BaiTapMovieRenderWithMap";
-import RenderWithMap from "./RenderWithMap/RenderWithMap";
-import BaiTapState from "./State/BaiTapState";
-import DemoState from "./State/DemoState";
-import StyleRender from "./StyleRender/StyleRender";
+import { NavLink, Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Home />
-      <Header />
-      <section className="d-flex">
-        <div className="w-25">
-          <Hello />
+    <div>
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div className="container">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "bg-light text-dark nav-link" : "nav-link text-white"
+            }
+            style={({ isActive }) => (isActive ? { borderRadius: "5px" } : {}) }
+            to=""
+          >
+            CYBERSOFT
+          </NavLink>
+          <button
+            className="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          />
+          <div className="collapse navbar-collapse" id="collapsibleNavId">
+            <ul className="navbar-nav me-auto mt-2 mt-lg-0">
+              <li className="nav-item active">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "bg-light text-dark nav-link" : "nav-link"
+                  }
+                  to="/home"
+                >
+                  Home <span className="visually-hidden">(current)</span>
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "bg-light text-dark nav-link" : "nav-link"
+                  }
+                  to="/login"
+                >
+                  Log In
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "bg-light text-dark nav-link" : "nav-link"
+                  }
+                  to="/contact"
+                >
+                  Contact
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "bg-light text-dark nav-link" : "nav-link"
+                  }
+                  to="/reactform"
+                >
+                  React Form
+                </NavLink>
+              </li>
+            </ul>
+            <form className="d-flex my-2 my-lg-0">
+              <input
+                className="form-control me-sm-2"
+                type="text"
+                placeholder="Search"
+              />
+              <button
+                className="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
         </div>
-        <div className="w-75">
-          <Content />
-        </div>
-      </section>
-      <footer>
-        <Footer />
-      </footer> */}
-      {/* <DataBinding/> */}
-      {/* <HandleEvent/> */}
-      {/* <DemoState/> */}
-      {/* <p className="color-red">APP NE</p>
-    <StyleRender/> */}
-      {/* <BaiTapState/> */}
-      {/* <RenderWithMap/> */}
-      {/* <BaiTapMovieRenderWithMap/> */}
-      {/* <DemoProps/> */}
-      {/* <PropsVip/> */}
-      {/* <BaiTapThucHanhLayout/> */}
-      {/* <BaiTapStateThuKinh/> */}
-      {/* <ThuKinhPractice /> */}
-      {/* <ProductList/> */}
-      {/* <BaiTapXemChiTiet/> */}
-      <ExeCar/>
-
-      
- 
+      </nav>
+      <div style={{ minHeight: 600 }}>
+        <Outlet />
+      </div>
+      <footer className="bg-dark text-white">Footer</footer>
     </div>
   );
 }
