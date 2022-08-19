@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class TableProduct extends Component {
   render() {
-    let { arrProduct } = this.props;
+    let { arrProduct, createProduct, delProduct, productEdit} = this.props;
     return (
       <table className="table">
         <thead>
@@ -19,18 +19,28 @@ export default class TableProduct extends Component {
         <tbody>
           {arrProduct.map((prod, index) => {
             return (
-              <tr key = {index}>
+              <tr key={index}>
                 <td>{prod.id}</td>
                 <td>
-                  <img src= {prod.img} alt="..."></img>
+                  <img src={prod.img} alt="..." style={{ width: 50 }}></img>
                 </td>
                 <td>{prod.name}</td>
                 <td>{prod.price}$</td>
                 <td>{prod.description}</td>
                 <td>{prod.productType}</td>
                 <td>
-                  <button className="btn btn-danger mx-2">Delete</button>
-                  <button className="btn btn-primary mx-2">Edit</button>
+                  <button
+                    className="btn btn-danger mx-2"
+                    onClick={() => {
+                      delProduct(prod.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <button className="btn btn-primary mx-2"
+                  onClick={()=>{
+                    productEdit(prod)
+                  }}>Edit</button>
                 </td>
               </tr>
             );

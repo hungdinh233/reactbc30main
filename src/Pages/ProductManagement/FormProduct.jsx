@@ -14,9 +14,9 @@ export default class FormProduct extends Component {
     errors: {
       id: "",
       name: "",
-      price: 0,
+      price: "",
       img: "",
-      productType: "moblie",
+      productType: "",
       description: "",
     },
   };
@@ -68,20 +68,52 @@ export default class FormProduct extends Component {
     }
     // check value (productInfo) tất cả value phải khác rỗng
     for (let key in productInfo) {
-      if (productInfo[key].trim() === "") {
+      if (productInfo[key] === "") {
         valid = false;
         break;
       }
     }
+
     if (!valid) {
+      let keyWarn = { ...errors };
+      for (let key in errors) {
+        keyWarn[key] = key + " không hợp lệ";
+      }
+
+      this.setState({
+        errors: keyWarn,
+      });
+      console.log("err", errors);
       alert("Dữ liệu không hợp lệ");
       return;
     }
     //hợp lệ
+    this.props.createProduct(productInfo);
     alert("submitted");
   };
+
+  static getDerivedStateFromProps(newProps, currentState) {
+    //lấy props.productEdit => gán vào state.ProductInfo => sau đó giao diện render ra từ state
+
+    // if (newProps.productEdit.id !== currentState.productInfo.id) {
+    //   currentState.productInfo = newProps.productEdit;
+    //   return currentState;
+    // }
+    // return null;
+  }
+
+  //chạy trước render sau khi props bị thay đổi
+  componentWillReceiveProps(newProps) {
+    //khi bấm nút chỉnh sửa lấy props gắn vào state =>giao diện render ra từ state
+    this.setState({
+      productInfo: newProps.productEdit,
+    });
+  }
+
   render() {
-    let { createProduct } = this.props;
+    let { productUpdate } = this.props;
+    let { id, name, price, img, description, productType } =
+      this.state.productInfo;
 
     return (
       <div className="container">
@@ -102,6 +134,7 @@ export default class FormProduct extends Component {
                   id="id"
                   name="id"
                   onChange={this.handleChange}
+                  value={id}
                 />
                 <p className="text-danger">{this.state.errors.id}</p>
               </div>
@@ -113,6 +146,7 @@ export default class FormProduct extends Component {
                   id="name"
                   name="name"
                   onChange={this.handleChange}
+                  value={name}
                 />
                 <p className="text-danger">{this.state.errors.name}</p>
               </div>
@@ -125,6 +159,7 @@ export default class FormProduct extends Component {
                   name="price"
                   onChange={this.handleChange}
                   data-type="number"
+                  value={price}
                 />
                 <p className="text-danger">{this.state.errors.price}</p>
               </div>
@@ -138,6 +173,7 @@ export default class FormProduct extends Component {
                   id="img"
                   name="img"
                   onChange={this.handleChange}
+                  value={img}
                 />
                 <p className="text-danger">{this.state.errors.img}</p>
               </div>
@@ -148,6 +184,7 @@ export default class FormProduct extends Component {
                   id="productType"
                   name="productType"
                   onChange={this.handleChange}
+                  value={productType}
                 >
                   <option value="mobile">Moblie</option>
                   <option value="tablet">Tablet</option>
@@ -163,6 +200,7 @@ export default class FormProduct extends Component {
                   id="description"
                   name="description"
                   onChange={this.handleChange}
+                  value={description}
                 />
                 <p className="text-danger">{this.state.errors.description}</p>
               </div>
@@ -172,12 +210,21 @@ export default class FormProduct extends Component {
             <button
               className="btn btn-success mx-2"
               onClick={() => {
-                createProduct(this.state.productInfo);
+                this.handleSubmit(); /*dùng state.productInfo là bởi ở hàm handleChange chúng ta đã onChange e.target tất cả các hành vi khi nhập input và clone vào thằng productInfo từ đó thằng profuctInfo là 1 thằng mới khi ta nhập vào input*/
               }}
             >
               Create
             </button>
-            <button className="btn btn-primary mx-2">Update</button>
+            {/* lưu ý để type =  button để js tránh hiểu nút update cũng là nút create hay submit */}
+            <button
+              className="btn btn-primary mx-2"
+              type="button"
+              onClick={() => {
+                productUpdate(this.state.productInfo);
+              }}
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>
